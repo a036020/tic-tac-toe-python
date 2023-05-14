@@ -75,6 +75,7 @@ TEMPLATES = [
 
 '''this is asynchronous'''
 ASGI_APPLICATION = "game.asgi.application"
+ALLOWED_HOSTS = ['3.89.113.244']
 
 
 # Database
