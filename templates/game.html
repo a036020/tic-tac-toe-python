@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
-    <title>Room {{room.id}} | Game</title>
+    <title>Room {{room}} | Game</title>
     <style>
         * {
             font-family: "Roboto", sans-serif;
@@ -104,6 +104,7 @@
         <div class="details">
             <p>{{name}} (You)</p>
             <p>{{room}} (Room ID)</p>
+            <!--<p>{{playerId}}</p>-->
             <p id="opponent-txt">Opponent (waiting to join)</p>
         </div>
         <div class="container">
@@ -177,7 +178,7 @@
         }
 
         //create the websocket connection
-        const ws = new WebSocket("ws://127.0.0.1:8000/ws/game/{{room.roomNumber}}/")
+        const ws = new WebSocket("ws://127.0.0.1:8000/ws/game/{{room.roomNumber}}/{{playerId}}/")
 
 
         ws.onopen = e => {

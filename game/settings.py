@@ -85,14 +85,28 @@ ASGI_APPLICATION = "game.asgi.application"
     }
 }
 '''
+#postgres database
 #python manage.py migrate --run-syncdb
-DATABASES = {
+'''DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "gamedb",  #nome da db
         "USER": "postgres",
         "PASSWORD": "123456",
         "HOST": "localhost",
+        "PORT": "5432",
+        
+    }
+}'''
+
+#aws_postgres
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "gamedb",  #nome da db
+        "USER": "postgres",
+        "PASSWORD": "12345678",
+        "HOST": "gamedb.cmi7guyygart.us-east-1.rds.amazonaws.com",
         "PORT": "5432",
         
     }

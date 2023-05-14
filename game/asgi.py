@@ -24,6 +24,6 @@ application = ProtocolTypeRouter({
     "http": get_asgi_application(),
     #URLRouter used to map WebSocket URLs to consumers
     "websocket": URLRouter([
-        path("ws/game/<int:id>/", MyappConsumer.as_asgi()) #as_asgi() method is used to convert the consumer class to an ASGI application
+        path("ws/game/<int:id>/<int:playerId>/", MyappConsumer.as_asgi()) #as_asgi() method is used to convert the consumer class to an ASGI application
     ])
 })

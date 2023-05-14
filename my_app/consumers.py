@@ -16,9 +16,10 @@ class MyappConsumer(AsyncJsonWebsocketConsumer):
     
      # Called on connection.
     async def connect(self):
-        print(self.scope) #['url_route']['kwargs']['id']) #kwargs are dictionary arguments that receives "key:args (ex. id:14)"
+        #print(self.scope['url_route']['kwargs']['id']) #kwargs are dictionary arguments that receives "key:args (ex. id:14)"
         self.room_id = self.scope['url_route']['kwargs']['id']
         self.group_name = f'group_{self.room_id}'
+        print(f'group_name>> {self.group_name}')
         
         try:
             if (len(self.channel_layer.groups[self.group_name]) >= 2):
@@ -33,16 +34,16 @@ class MyappConsumer(AsyncJsonWebsocketConsumer):
         
         # To accept the connection call:
         await self.accept()
+        print(f'final group {self.channel_name}')
         await self.channel_layer.group_add(self.group_name, self.channel_name)
-        
+        print(f'self.channel_layer.groups>> {self.channel_layer.groups}')
         if (len(self.channel_layer.groups[self.group_name]) == 2):
             #convert the dictionary to a list to access easily just the key
             tmpGroup = list(self.channel_layer.groups[self.group_name])
-            print(tmpGroup)
             first_player = random.choice(tmpGroup)
             tmpGroup.remove(first_player)
             final_group = [first_player, tmpGroup[0]]
-            print(final_group)
+            print(f'final group {final_group}')
 
             for i, channel_name in enumerate(final_group):
                 await self.channel_layer.send(channel_name, {
@@ -57,7 +58,7 @@ class MyappConsumer(AsyncJsonWebsocketConsumer):
 
     # Called with either text_data or bytes_data for each frame
     async def receive_json(self, content, **kwargs):
-        print(content)
+        print(f'content>> {content}')
         
         if(content["event"] == "boardData_send"):
 
