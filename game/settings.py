@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "whitenoise.runserver_nostatic",
+    #"whitenoise.runserver_nostatic",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    #"whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -75,7 +75,7 @@ TEMPLATES = [
 
 '''this is asynchronous'''
 ASGI_APPLICATION = "game.asgi.application"
-ALLOWED_HOSTS = ['3.89.113.244']
+ALLOWED_HOSTS = ['*']
 
 
 # Database
@@ -92,7 +92,7 @@ ALLOWED_HOSTS = ['3.89.113.244']
 #python manage.py migrate --run-syncdb
 '''DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "gamedb",  #nome da db
         "USER": "postgres",
         "PASSWORD": "123456",
@@ -106,10 +106,10 @@ ALLOWED_HOSTS = ['3.89.113.244']
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "gamedb",  #nome da db
-        "USER": "postgres",
+        "NAME": "tictacdb",  #nome da db
+        "USER": "superuser",
         "PASSWORD": "12345678",
-        "HOST": "gamedb.cmi7guyygart.us-east-1.rds.amazonaws.com",
+        "HOST": "tictacdb.cmi7guyygart.us-east-1.rds.amazonaws.com",
         "PORT": "5432",
         
     }
