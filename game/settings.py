@@ -90,7 +90,7 @@ ALLOWED_HOSTS = ['*']
 '''
 #postgres database
 #python manage.py migrate --run-syncdb
-'''DATABASES = {
+DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "gamedb",  #nome da db
@@ -100,10 +100,10 @@ ALLOWED_HOSTS = ['*']
         "PORT": "5432",
         
     }
-}'''
+}
 
 #aws_postgres
-DATABASES = {
+'''DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "tictacdb",  #nome da db
@@ -113,7 +113,7 @@ DATABASES = {
         "PORT": "5432",
         
     }
-}
+}'''
 
 AUTH_USER_MODEL = 'my_app.User'
 
