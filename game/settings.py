@@ -101,29 +101,11 @@ ALLOWED_HOSTS = ['*']
 #postgres database
 #python manage.py migrate --run-syncdb
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "gamedb",  #nome da db
-        "USER": "postgres",
-        "PASSWORD": "123456",
-        "HOST": "localhost",
-        "PORT": "5432",
-        
-    }
+    "default": env.db("DATABASE_URL")
 }
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 
-#aws_postgres
-'''DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "tictacdb",  #nome da db
-        "USER": "superuser",
-        "PASSWORD": "12345678",
-        "HOST": "tictacdb.cmi7guyygart.us-east-1.rds.amazonaws.com",
-        "PORT": "5432",
-        
-    }
-}'''
 
 AUTH_USER_MODEL = 'my_app.User'
 
@@ -162,8 +144,14 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+REDIS_URL = env('REDIS_URL', default=None)
+
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [REDIS_URL],
+        },
+    },
 }
+
