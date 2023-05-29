@@ -15,7 +15,9 @@ daphne==4.0.0
 debugpy==1.6.6
 decorator==5.1.1
 Django==4.1.7
+django-redis
 executing==1.2.0
+gunicorn
 hyperlink==21.0.0
 idna==3.4
 incremental==22.10.0
